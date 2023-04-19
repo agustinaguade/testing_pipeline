@@ -19,8 +19,7 @@ jobs:
       with:
         dotnet-version: 5.0.201
 
-    - name: Install dependencies
-      run: dotnet restore /testing_pipeline/BlogApp
+   
 
     - name: Build
       run: dotnet build /testing_pipeline/BlogApp --configuration Release --no-restore
