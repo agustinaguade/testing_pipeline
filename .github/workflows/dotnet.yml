@@ -20,10 +20,10 @@ jobs:
         dotnet-version: 5.0.201
 
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore ./testing_pipeline/BlogApp/BlogApp.sln
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ./testing_pipeline/BlogApp/BlogApp.sln --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test ./testing_pipeline/BlogApp/BlogApp.sln --no-restore --verbosity normal
