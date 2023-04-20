@@ -9,11 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./BlogApp
     name: CI Build
     steps:
-      defaults:
-        run:
-          working-directory: ./BlogApp
       - name: Checkout
         uses: actions/checkout@v2
 
