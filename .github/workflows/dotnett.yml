@@ -25,10 +25,7 @@ jobs:
         version: "v0.1.15"
     - name: Comment total coverage on pull request
       uses: codecov/codecov-commenter-action@v1
-      with:
-        repo_token: ${{ secrets.CODECOV_TOKEN }}
-        coverage: "totals"
-        - name: Upload coverage results to Codecov.io
+    - name: Upload coverage results to Codecov.io
       uses: codecov/codecov-action@v2
       with:
         token: ${{secrets.CODECOV_TOKEN}}
