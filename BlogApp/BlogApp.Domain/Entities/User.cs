@@ -16,8 +16,14 @@ public class User
     {
         ValidateFields();
         ValidateEmail();
+        TestingTheTester();
     }
-    
+
+    public void TestingTheTester()
+    {
+        var dunno = "care";
+    }
+
     private void ValidateFields()
     {
         if (AreAllTheFieldsCompleted())
