@@ -35,6 +35,6 @@ jobs:
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.1.19
         with:
-          reports: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp/TestResults/*/coverage.coverage.xml
+          reports: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp/TestResults
           targetdir: /home/runner/work/testing_pipeline/testing_pipeline/coveragereport
           sourcedirs: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp
