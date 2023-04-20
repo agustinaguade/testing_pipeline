@@ -22,5 +22,7 @@ jobs:
       uses: codecov/codecov-action@v2.1.0
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./TestResults/*/coverage.cobertura.xml
+        file: ./TestResults/**/coverage.cobertura.xml
         flags: unittests
+        fail_ci_if_error: true
+        fail_ci_if_coverage_drops: 80
