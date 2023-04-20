@@ -17,10 +17,10 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Run tests and coverage
-        run: dotnet test --collect:"XPlat Code Coverage"
+      run: dotnet test --collect:"XPlat Code Coverage"
     - name: Upload coverage report to Codecov
-        uses: codecov/codecov-action@v2.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./TestResults/*/coverage.cobertura.xml
-          flags: unittests
+      uses: codecov/codecov-action@v2.1.0
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./TestResults/*/coverage.cobertura.xml
+        flags: unittests
