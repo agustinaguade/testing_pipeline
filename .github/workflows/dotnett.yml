@@ -49,4 +49,4 @@ jobs:
       if: github.event_name == 'pull_request'
       with:
         recreate: true
-        path: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp/TestResults/*/*
+        path: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp/TestResults/*
