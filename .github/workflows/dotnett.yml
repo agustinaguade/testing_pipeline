@@ -37,4 +37,4 @@ jobs:
         with:
           reports: cobertura.xml
           targetdir: coveragereport
-          sourcedirs: ./BlogApp
+          sourcedirs: ./BlogApp/coverage/**/*
