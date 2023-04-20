@@ -30,11 +30,11 @@ jobs:
         run: dotnet build  --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" #--results-directory ./coverage
+        run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory /home/runner/work/testing_pipeline/testing_pipeline/BlogApp/TestResults
 
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.1.19
         with:
-          reports: cobertura.xml
-          targetdir: coveragereport
-          sourcedirs: ./BlogApp/*/TestResults/*/coverage.coverage.xml
+          reports: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp/TestResults/*/coverage.coverage.xml
+          targetdir: /home/runner/work/testing_pipeline/testing_pipeline/coveragereport
+          sourcedirs: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp
