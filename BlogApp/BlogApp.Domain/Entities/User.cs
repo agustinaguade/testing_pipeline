@@ -21,7 +21,7 @@ public class User
 
     public void TestingTheTester()
     {
-        var dunno = 'care';
+        var dunno = "care";
     }
 
     private void ValidateFields()
