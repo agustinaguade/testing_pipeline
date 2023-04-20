@@ -9,15 +9,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
-    defaults:
-      run:
-        working-directory: ./BlogApp
-
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
+ defaults:
       run:
         working-directory: ./BlogApp
     steps:
@@ -30,6 +26,5 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: DotCover Github Actions wrapper
-      uses: dodopizza/dotcover-action@v1.2
-
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
