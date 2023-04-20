@@ -37,6 +37,6 @@ jobs:
       run: dotnet test $SOLUTION --collect:"Code Coverage" --logger "trx;LogFileName=test-results.trx" || true
       
     - name: Upload coverage to Codecov
-       uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.YOUR_SECRET_TOKEN }}
