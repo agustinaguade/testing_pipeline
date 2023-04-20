@@ -38,3 +38,9 @@ jobs:
           reports: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp/TestResults/*/*
           targetdir: /home/runner/work/testing_pipeline/testing_pipeline/coveragereport
           sourcedirs: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp
+
+      - name: Upload coverage report artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: CoverageReport # Artifact name        
+          path: /home/runner/work/testing_pipeline/testing_pipeline/BlogApp/TestResults/*/*
