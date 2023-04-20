@@ -28,3 +28,12 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+    - name: Check code coverage
+        uses: codecov/check-action@v1.2.0
+        with:
+          fail_ci_if_error: true
+          coverage: "80%"
