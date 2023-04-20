@@ -1,4 +1,5 @@
-name: CI
+
+        name: CI
 
 on:
   push:
@@ -33,12 +34,13 @@ jobs:
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG
       
     - name: Test
-      run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger trx --configuration Release
+      run: dotnet test $SOLUTION --collect:"Code Coverage"
       
-    - name: Process trx reports with default
-        if: always()
-        # You may also reference just the major or major.minor version
-        uses: im-open/process-dotnet-test-results@v2.3.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: DotNET Tests
+        path: "**/test-results.trx"                            
+        reporter: dotnet-trx
+        fail-on-error: true
