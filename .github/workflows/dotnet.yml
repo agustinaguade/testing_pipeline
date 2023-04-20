@@ -1,29 +1,37 @@
-name: .NET Core CI
+name: ASP.NET Core PR CI
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-    - name: Setup .NET Core SDK
+    - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.201
+        dotnet-version: 6.0.x
 
-    - name: Install dependencies
+    - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+    - name: Build and test
+      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+    - name: Calculate code coverage
+      uses: danielpalme/ReportGenerator@v4
+      with:
+        reports: **/coverage.opencover.xml
+        targetdir: coverage
+        reporttypes: HtmlInline_AzurePipelines
+
+    - name: Upload code coverage results
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage
+        path: coverage

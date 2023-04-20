@@ -9,4 +9,6 @@ public interface IRepository<T>
     void Update(T entity);
 
     IEnumerable<T> GetAll();
+    
+    
 }
