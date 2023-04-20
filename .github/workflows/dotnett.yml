@@ -32,7 +32,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory coverage
 
-    - task: DotNetCoreCLI@2
+    - uses: DotNetCoreCLI@2
       displayName: dotnet test
       inputs:
         command: 'test'
@@ -41,7 +41,7 @@ jobs:
         publishTestResults: true
 
     # Publish code coverage report to the pipeline
-    - task: PublishCodeCoverageResults@1
+    - uses: PublishCodeCoverageResults@1
       displayName: 'Publish code coverage'
       inputs:
         codeCoverageTool: Cobertura
