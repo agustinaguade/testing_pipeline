@@ -21,11 +21,14 @@ jobs:
     - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v2
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./TestResults/Coverage/coverage.xml
-        fail_ci_if_error: true
+        token: ${{secrets.CODECOV_TOKEN}}
+        version: "v0.1.15"
     - name: Comment total coverage on pull request
       uses: codecov/codecov-commenter-action@v1
       with:
         repo_token: ${{ secrets.CODECOV_TOKEN }}
         coverage: "totals"
+        - name: Upload coverage results to Codecov.io
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
