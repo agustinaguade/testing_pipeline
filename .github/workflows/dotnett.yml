@@ -31,9 +31,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Build and test with dotCover
-      run: |
-        dotnet dotcover test --no-build --output=dotcover.html --ReportType=HTML --ReportName=CoverageReport
-
+      run:  dotnet dotcover test --no-build --output=dotcover.html --ReportType=HTML --ReportName=CoverageReport
     - name: Upload coverage report
       uses: actions/upload-artifact@v2
       with:
