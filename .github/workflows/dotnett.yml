@@ -2,15 +2,18 @@ name: .Net 6 CI Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: CI Build
     steps:
+    defaults:
+    run:
+      working-directory: ./BlogApp
     - name: Checkout
       uses: actions/checkout@v2
 
