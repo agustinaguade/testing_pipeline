@@ -33,13 +33,12 @@ jobs:
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG
       
     - name: Test
-      run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
+      run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger trx --configuration Release
       
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: DotNET Tests
-        path: "**/test-results.trx"                            
-        reporter: dotnet-trx
-        fail-on-error: true
+    - name: Process trx reports with default
+        if: always()
+        # You may also reference just the major or major.minor version
+        uses: im-open/process-dotnet-test-results@v2.3.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
