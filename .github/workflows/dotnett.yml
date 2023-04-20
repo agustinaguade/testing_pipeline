@@ -18,14 +18,5 @@ jobs:
       run: dotnet restore
     - name: Build and test
       run: dotnet test --logger "trx;LogFileName=testresults.xml" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestResults/Coverage/
-    - name: Upload coverage report to Codecov
-      uses: codecov/codecov-action@v2
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
-        version: "v0.1.15"
-    - name: Comment total coverage on pull request
-      uses: codecov/codecov-commenter-action@v1
-    - name: Upload coverage results to Codecov.io
-      uses: codecov/codecov-action@v2
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
