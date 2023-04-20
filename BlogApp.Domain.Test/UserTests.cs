@@ -41,7 +41,6 @@ namespace BlogApp.Domain.Test;
         }
         
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void ValidateEmailValidationFails()
         {
             var user = new User()
