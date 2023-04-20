@@ -30,10 +30,6 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Build and test with dotCover
-      run:  dotnet dotcover test --no-build --output=dotcover.html --ReportType=HTML --ReportName=CoverageReport
-    - name: Upload coverage report
-      uses: actions/upload-artifact@v2
-      with:
-        name: dotcover
-        path: dotcover.html
+    - name: DotCover Github Actions wrapper
+      uses: dodopizza/dotcover-action@v1.2
+
