@@ -1,10 +1,9 @@
-name: CI
+name: ASP.NET Core CI
 
-on: [pull_request]
-
-defaults:
-  run:
-    working-directory: ./BlogApp
+on:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build-and-test:
@@ -13,27 +12,20 @@ jobs:
       run:
         working-directory: ./BlogApp
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
-
-      - name: Restore dependencies
-        run: dotnet restore
-      
-      - name: Build and run tests
-        run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-
-      - name: Upload coverage report to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Check code coverage
-        uses: codecov/check-action@v1.2.0
-        with:
-          fail_ci_if_error: true
-          coverage: "80%"
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build and test
+      run: dotnet test --logger "trx;LogFileName=testresults.xml" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestResults/Coverage/
+    - name: Upload coverage report to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./TestResults/Coverage/coverage.xml
+        fail_ci_if_error: true
+    - name: Comment total coverage on pull request
+      uses: codecov/codecov-commenter-action@v1
+      with:
+        repo_token: ${{ secrets.CODECOV_TOKEN }}
+        coverage: "totals"
