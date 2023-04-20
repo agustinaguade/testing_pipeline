@@ -34,7 +34,7 @@ jobs:
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG
       
     - name: Test
-      run: dotnet test $SOLUTION --collect:"Code Coverage"
+      run: dotnet test $SOLUTION --collect:"Code Coverage" --logger "trx;LogFileName=test-results.trx" || true
       
     - name: Test Report
       uses: dorny/test-reporter@v1
